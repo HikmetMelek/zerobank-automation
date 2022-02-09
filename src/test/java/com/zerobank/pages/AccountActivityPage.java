@@ -8,6 +8,9 @@ public class AccountActivityPage extends BasePage{
     @FindBy(id = "aa_accountId")
     public WebElement selectLink;
 
+    @FindBy(partialLinkText = "Find Transactions")
+    public WebElement findTransactionsLink;
+
 
 
 
