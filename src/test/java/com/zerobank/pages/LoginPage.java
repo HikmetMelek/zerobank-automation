@@ -22,6 +22,9 @@ public class LoginPage {
     @FindBy(name = "submit")
     public WebElement submit;
 
+    @FindBy(id = "enableTls10Button")
+    public WebElement secureConnection;
+
 
     public void login(){
         userLoginName.sendKeys(ConfigurationReader.get("username"));
