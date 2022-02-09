@@ -29,6 +29,7 @@ public class Driver {
                     handleSSL.setAcceptInsecureCerts(true);
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(handleSSL);
+                    driver.manage().window().maximize();
                     break;
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
