@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.Select;
 public class AccountActivityNavigationStepDef {
 
     DashboardPage dashboardPage=new DashboardPage();
+    Select select;
 
     @Given("the user is logged in")
     public void the_user_is_logged_in() {
@@ -31,7 +32,7 @@ public class AccountActivityNavigationStepDef {
 
     @When("the user clicks on {string} link on the Account Summary page")
     public void the_user_clicks_on_link_on_the_Account_Summary_page(String link) {
-        Select select= new Select(new AccountActivityPage().selectLink);
+        select= new Select(new AccountActivityPage().selectLink);
         select.selectByVisibleText(link);
     }
 
@@ -39,7 +40,7 @@ public class AccountActivityNavigationStepDef {
     public void account_drop_down_should_have_selected(String linkText) {
         String expectedLinkText=linkText;
         System.out.println("expectedLinkText = " + expectedLinkText);
-        Select select= new Select(new AccountActivityPage().selectLink);
+        select= new Select(new AccountActivityPage().selectLink);
         String actualLinkText= select.getFirstSelectedOption().getText();
         System.out.println("actualLinkText = " + actualLinkText);
 
