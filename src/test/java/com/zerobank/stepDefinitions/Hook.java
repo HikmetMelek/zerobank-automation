@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class Hook {
     @Before
     public void setUp(){
+        Driver.get().manage().window().maximize();
         Driver.get().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
     }

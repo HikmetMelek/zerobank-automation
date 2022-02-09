@@ -15,8 +15,7 @@ public abstract class BasePage {
     @FindBy(css = "button[id='signin_button'][class='signin btn btn-info']")
     public WebElement singInButton;
 
-    @FindBy(id = "account_activity_link")
-    public WebElement checkingAccountActivity;
+
 
 
 }

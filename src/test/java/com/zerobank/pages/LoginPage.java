@@ -1,5 +1,6 @@
 package com.zerobank.pages;
 
+import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -26,6 +27,8 @@ public class LoginPage {
         userLoginName.sendKeys(ConfigurationReader.get("username"));
         userPassword.sendKeys(ConfigurationReader.get("password"));
         submit.click();
+        BrowserUtils.waitFor(2);
+        Driver.get().get("http://zero.webappsecurity.com/bank/account-summary.html");
     }
 
 
