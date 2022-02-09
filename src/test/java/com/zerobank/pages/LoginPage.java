@@ -31,8 +31,7 @@ public class LoginPage {
         userPassword.sendKeys(ConfigurationReader.get("password"));
         submit.click();
         BrowserUtils.waitFor(2);
-        secureConnection.click();
-        //Driver.get().get("http://zero.webappsecurity.com/bank/account-summary.html");
+        Driver.get().get("http://zero.webappsecurity.com/bank/account-summary.html");
     }
 
 

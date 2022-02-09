@@ -1,4 +1,4 @@
-@asd
+@wip
 Feature: Navigating to specific accounts in Accounts Activity
 
   Background:

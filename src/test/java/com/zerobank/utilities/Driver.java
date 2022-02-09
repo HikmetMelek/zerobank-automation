@@ -24,16 +24,12 @@ public class Driver {
 
         if (driver == null) {
             String browser = ConfigurationReader.get("browser");
-            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-            desiredCapabilities.setAcceptInsecureCerts(true);
-
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.merge(desiredCapabilities);
-
+            ChromeOptions handlingSSL = new ChromeOptions();
+            handlingSSL.setAcceptInsecureCerts(true);
             switch (browser) {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    driver = new ChromeDriver(handlingSSL);
                     break;
 //            switch (browser) {
 ////                case "chrome":
