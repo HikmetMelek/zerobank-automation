@@ -10,8 +10,20 @@ public class PayBillsPage extends BasePage{
     @FindBy(partialLinkText = "Add New Payee")
     public WebElement addNewPayeeLink;
 
-    @FindBy(xpath = "(//div[@class='board-content'])[2]//div[@class='control-group']")
-    public List<WebElement> inputBoxes;
+    @FindBy(id = "np_new_payee_name")
+    public WebElement payeeNameInputBoxes;
+
+    @FindBy(id = "np_new_payee_address")
+    public WebElement payeeAddressInputBoxes;
+
+    @FindBy(id = "np_new_payee_account")
+    public WebElement payeeAccountInputBoxes;
+
+    @FindBy(id = "np_new_payee_details")
+    public WebElement payeeDetailsInputBoxes;
+
+    @FindBy(id = "add_new_payee")
+    public WebElement addButton;
 
 
 
