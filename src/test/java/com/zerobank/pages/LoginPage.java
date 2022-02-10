@@ -30,7 +30,7 @@ public class LoginPage {
         userLoginName.sendKeys(ConfigurationReader.get("username"));
         userPassword.sendKeys(ConfigurationReader.get("password"));
         submit.click();
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(1);
         Driver.get().get("http://zero.webappsecurity.com/bank/account-summary.html");
     }
 
