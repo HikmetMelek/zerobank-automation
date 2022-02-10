@@ -26,8 +26,8 @@ public class AccountActivityNavigationStepDef {
 
     @Then("the {string} page should be displayed")
     public void the_page_should_be_displayed(String title) {
-        dashboardPage.accountActivityLink.click();
-        Assert.assertTrue(Driver.get().getTitle().contains(title));
+      dashboardPage.navigateToModule(title);
+      Assert.assertTrue(Driver.get().getTitle().contains(title));
     }
 
     @When("the user clicks on {string} link on the Account Summary page")

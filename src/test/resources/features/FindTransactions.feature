@@ -1,4 +1,4 @@
-@wip
+
 Feature: Find Transactions in Account Activity
 
   Background:
@@ -24,7 +24,7 @@ Feature: Find Transactions in Account Activity
     And clicks search
     Then results table should only show descriptions containing "OFFICE"
     But results table should not show descriptions containing "ONLINE"
-
+@ash
   Scenario: Search description case insensitive
     When the user enters description "ONLINE"
     And clicks search
