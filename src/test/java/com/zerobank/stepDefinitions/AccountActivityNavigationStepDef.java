@@ -26,7 +26,15 @@ public class AccountActivityNavigationStepDef {
 
     @Then("the {string} page should be displayed")
     public void the_page_should_be_displayed(String title) {
-        dashboardPage.accountActivityLink.click();
+        switch (title){
+            case "Account Activity":
+                dashboardPage.accountActivityLink.click();
+                break;
+            case "Pay Bills":
+                dashboardPage.payBillsLink.click();
+                break;
+        }
+
         Assert.assertTrue(Driver.get().getTitle().contains(title));
     }
 
