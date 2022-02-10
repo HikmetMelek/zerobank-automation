@@ -3,7 +3,7 @@ Feature: Purchase Foreign Currency
   Background:
     Given the user is logged in
     Then the "Pay Bills" page should be displayed
-  @wip
+@wip
   Scenario: Available currencies
     Given the user accesses the Purchase foreign currency cash tab
     Then following currencies should be available

@@ -21,9 +21,8 @@ public class PurchaseForeignCurrencyStepDef {
 
     @Then("following currencies should be available")
     public void following_currencies_should_be_available(List<String> expectedCurrencies) {
-        List<WebElement> select= new Select(page.selectedCurrency).getOptions();
-
         List<String> actualCurrencies = new ArrayList<>();
+        List<WebElement> select= new Select(page.selectedCurrency).getOptions();
         for (WebElement each : select) {
             actualCurrencies.add(each.getText());
         }
