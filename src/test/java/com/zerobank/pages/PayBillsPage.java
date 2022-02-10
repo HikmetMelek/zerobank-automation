@@ -10,6 +10,9 @@ public class PayBillsPage extends BasePage{
     @FindBy(partialLinkText = "Add New Payee")
     public WebElement addNewPayeeLink;
 
+    @FindBy(partialLinkText = "Purchase Foreign Currency")
+    public WebElement purchaseForeignLink;
+
     @FindBy(id = "np_new_payee_name")
     public WebElement payeeNameInputBoxes;
 
@@ -24,6 +27,9 @@ public class PayBillsPage extends BasePage{
 
     @FindBy(id = "add_new_payee")
     public WebElement addButton;
+
+    @FindBy(id = "pc_currency")
+    public WebElement selectedCurrency;
 
 
 
