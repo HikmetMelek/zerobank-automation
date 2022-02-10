@@ -31,7 +31,17 @@ public class PayBillsPage extends BasePage{
     @FindBy(id = "pc_currency")
     public WebElement selectedCurrency;
 
+    @FindBy(id = "pc_amount")
+    public WebElement amountInputBox;
 
+    @FindBy(id = "pc_calculate_costs")
+    public WebElement calculateCostsButton;
+
+    @FindBy(id = "pc_inDollars_false")
+    public WebElement selectedRadioButton;
+
+    @FindBy(id = "pc_inDollars_true")
+    public WebElement dollarRadioButton;
 
     @FindBy(xpath = "//button[@data-dismiss='alert']/../div[@id='alert_content']")
     public WebElement message;

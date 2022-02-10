@@ -3,9 +3,9 @@ Feature: Purchase Foreign Currency
   Background:
     Given the user is logged in
     Then the "Pay Bills" page should be displayed
-@wip
-  Scenario: Available currencies
     Given the user accesses the Purchase foreign currency cash tab
+
+  Scenario: Available currencies
     Then following currencies should be available
       | Select One            |
       | Australia (dollar)    |
@@ -23,6 +23,15 @@ Feature: Purchase Foreign Currency
       | Sweden (krona)        |
       | Singapore (dollar)    |
       | Thailand (baht)       |
+  @wip
+  Scenario: Error message for not selecting currency
+    When user tries to calculate cost without selecting a currency
+    Then error message "Please, ensure that you have filled all the required fields with valid values." should be displayed
+  @wip
+  Scenario: Error message for not entering value
+    When user tries to calculate cost without entering a value
+    Then error message "Please, ensure that you have filled all the required fields with valid values." should be displayed
+
 
 
 
