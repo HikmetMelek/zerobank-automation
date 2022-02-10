@@ -8,7 +8,21 @@ public class DashboardPage extends BasePage{
     @FindBy(partialLinkText = "Account Activity")
     public WebElement accountActivityLink;
 
+    @FindBy(partialLinkText = "Pay Bills")
+    public WebElement payBillsLink;
 
+
+    public void navigateToModule(String moduleTitle){
+        switch (moduleTitle){
+            case "Account Activity":
+                accountActivityLink.click();
+                break;
+            case "Pay Bills":
+                payBillsLink.click();
+                break;
+        }
+
+    }
 
 
 
