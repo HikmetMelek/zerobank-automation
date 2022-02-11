@@ -43,5 +43,8 @@ public class AccountActivityPage extends BasePage{
     @FindBy(xpath = "//div[@id='filtered_transactions_for_account']//td[4]")
     public List<WebElement>  withdrawalList;
 
+    @FindBy(xpath = "//div[@id='all_transactions_for_account']//th")
+    public List<WebElement> transactionsColumns;
+
 
 }
