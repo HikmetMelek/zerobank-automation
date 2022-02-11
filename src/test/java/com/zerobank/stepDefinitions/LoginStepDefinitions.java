@@ -16,7 +16,6 @@ public class LoginStepDefinitions {
 
     @Given("User is on the login page")
     public void user_is_on_the_login_page() {
-        Driver.get().get(ConfigurationReader.get("zeroBankUrl"));
         new DashboardPage().singInButton.click();
     }
 

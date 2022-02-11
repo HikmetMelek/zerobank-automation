@@ -1,6 +1,6 @@
 
 Feature: Find Transactions in Account Activity
-
+  Description: The purpose of this feature is to test the Find Transactions functionality on Accounts Activity
   Background:
     Given the user is logged in
     Then the "Account Activity" page should be displayed
@@ -16,15 +16,16 @@ Feature: Find Transactions in Account Activity
     Then results table should only show transactions dates between "2012-09-02" to "2012-09-06"
     And the results table should only not contain transactions dated "2012-09-01"
 
-  Scenario: Search description
-    When the user enters description "ONLINE"
+  Scenario Outline: Search description
+    When the user enters description "<Search Word>"
     And clicks search
-    Then results table should only show descriptions containing "ONLINE"
-    When the user enters description "OFFICE"
-    And clicks search
-    Then results table should only show descriptions containing "OFFICE"
-    But results table should not show descriptions containing "ONLINE"
-@ash
+    Then results table should only show descriptions containing "<Search Word>"
+    But results table should not show descriptions containing "<Other Word>"
+    Examples:
+      | Search Word | Other Word |
+      | ONLINE      | OFFICE     |
+      | OFFICE      | ONLINE     |
+
   Scenario: Search description case insensitive
     When the user enters description "ONLINE"
     And clicks search
@@ -32,16 +33,17 @@ Feature: Find Transactions in Account Activity
     When the user enters description "online"
     And clicks search
     Then results table should not show any descriptions containing "ONLINE"
+  @asz
+  Scenario Outline: Type tab
+    When user selects type "<Type>"
+    And clicks search
+    Then results table should show at least one result under "<Type>"
+    But results table should show no result under "Withdrawal"
+    Examples:
+      | Type       |
+      | Any        |
+      | Deposit    |
+      | Withdrawal |
 
-  Scenario: Type
-    And clicks search
-    Then results table should show at least one result under Deposit
-    Then results table should show at least one result under Withdrawal
-    When user selects type "Deposit"
-    And clicks search
-    Then results table should show at least one result under Deposit
-    But results table should show no result under Withdrawal
-    When user selects type "Withdrawal"
-    And clicks search
-    Then results table should show at least one result under Withdrawal
-    But results table should show no result under Deposit
+
+

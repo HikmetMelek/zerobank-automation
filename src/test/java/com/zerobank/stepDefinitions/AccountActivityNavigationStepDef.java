@@ -20,12 +20,10 @@ public class AccountActivityNavigationStepDef {
 
     @Given("the user is logged in")
     public void the_user_is_logged_in() {
-        Driver.get().get(ConfigurationReader.get("zeroBankUrl"));
         dashboardPage.singInButton.click();
         String username=ConfigurationReader.get("username");
         String password=ConfigurationReader.get("password");
         new LoginPage().login(username,password);
-        BrowserUtils.waitFor(1);
         Driver.get().get("http://zero.webappsecurity.com/bank/account-summary.html");
     }
 
@@ -35,20 +33,15 @@ public class AccountActivityNavigationStepDef {
       Assert.assertTrue(Driver.get().getTitle().contains(title));
     }
 
-    @When("the user clicks on {string} link on the Account Summary page")
+    @When("the user clicks on {string} link on the Account Activity page")
     public void the_user_clicks_on_link_on_the_Account_Summary_page(String link) {
         select= new Select(new AccountActivityPage().selectLink);
         select.selectByVisibleText(link);
     }
 
     @And("Account drop down should have {string} selected")
-    public void account_drop_down_should_have_selected(String linkText) {
-        String expectedLinkText=linkText;
-        System.out.println("expectedLinkText = " + expectedLinkText);
-        select= new Select(new AccountActivityPage().selectLink);
+    public void account_drop_down_should_have_selected(String expectedLinkText) {
         String actualLinkText= select.getFirstSelectedOption().getText();
-        System.out.println("actualLinkText = " + actualLinkText);
-
         Assert.assertEquals(expectedLinkText,actualLinkText);
     }
 

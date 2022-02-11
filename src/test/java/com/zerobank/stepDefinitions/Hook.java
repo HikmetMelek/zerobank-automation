@@ -1,6 +1,7 @@
 package com.zerobank.stepDefinitions;
 
 import com.zerobank.utilities.BrowserUtils;
+import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -16,7 +17,7 @@ public class Hook {
     public void setUp(){
         Driver.get().manage().window().maximize();
         Driver.get().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
+        Driver.get().get(ConfigurationReader.get("zeroBankUrl"));
     }
 
     @After
