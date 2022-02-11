@@ -22,16 +22,13 @@ public class LoginPage {
     @FindBy(name = "submit")
     public WebElement submit;
 
-    @FindBy(id = "enableTls10Button")
-    public WebElement secureConnection;
+    @FindBy(css = "div[class='alert alert-error']")
+    public WebElement alertMessage;
 
-
-    public void login(){
-        userLoginName.sendKeys(ConfigurationReader.get("username"));
-        userPassword.sendKeys(ConfigurationReader.get("password"));
+    public void login(String username, String password){
+        userLoginName.sendKeys(username);
+        userPassword.sendKeys(password);
         submit.click();
-        BrowserUtils.waitFor(1);
-        Driver.get().get("http://zero.webappsecurity.com/bank/account-summary.html");
     }
 
 

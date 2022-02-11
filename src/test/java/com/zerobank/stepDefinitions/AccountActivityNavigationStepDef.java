@@ -3,6 +3,7 @@ package com.zerobank.stepDefinitions;
 import com.zerobank.pages.AccountActivityPage;
 import com.zerobank.pages.DashboardPage;
 import com.zerobank.pages.LoginPage;
+import com.zerobank.utilities.BrowserUtils;
 import com.zerobank.utilities.ConfigurationReader;
 import com.zerobank.utilities.Driver;
 import io.cucumber.java.en.And;
@@ -21,7 +22,11 @@ public class AccountActivityNavigationStepDef {
     public void the_user_is_logged_in() {
         Driver.get().get(ConfigurationReader.get("zeroBankUrl"));
         dashboardPage.singInButton.click();
-        new LoginPage().login();
+        String username=ConfigurationReader.get("username");
+        String password=ConfigurationReader.get("password");
+        new LoginPage().login(username,password);
+        BrowserUtils.waitFor(1);
+        Driver.get().get("http://zero.webappsecurity.com/bank/account-summary.html");
     }
 
     @Then("the {string} page should be displayed")
