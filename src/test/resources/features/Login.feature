@@ -6,7 +6,7 @@ Feature: Login
 
      When User enters the valid credentials
      Then Account Summary page should be displayed
-  @wip
+
   Scenario Outline: User should be able to login with invalid credentials
     When User logs in using "<username>" and "<password>"
     Then User should see error message
