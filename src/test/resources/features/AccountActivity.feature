@@ -1,5 +1,5 @@
 Feature: account Activity page
-  @wip
+
   Scenario: Account activity page verification
     Given the user is logged in
     When User navigates to "Account Activity"

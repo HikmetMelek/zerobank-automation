@@ -46,6 +46,13 @@ public class PayBillsPage extends BasePage{
     @FindBy(xpath = "//button[@data-dismiss='alert']/../div[@id='alert_content']")
     public WebElement message;
 
+    @FindBy(id = "sp_amount")
+    public WebElement amountInPaySaved;
 
+    @FindBy(id = "sp_date")
+    public WebElement dateInputBox;
+
+    @FindBy(id = "pay_saved_payees")
+    public WebElement payButton;
 
 }

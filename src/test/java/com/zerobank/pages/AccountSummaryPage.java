@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-public class AccountSummaryPage {
+public class AccountSummaryPage extends BasePage {
 
     @FindBy(xpath = "//h2[@class='board-header']")
     public List<WebElement> accountTypeList;

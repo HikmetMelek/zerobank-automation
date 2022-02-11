@@ -1,5 +1,5 @@
 Feature: Account Summary page
-
+@summary
   Scenario: Account summary page verification
     Given the user is logged in
     Then The title should be displayed as "Zero - Account Summary"
