@@ -33,15 +33,19 @@ Feature: Find Transactions in Account Activity
     When the user enters description "online"
     And clicks search
     Then results table should not show any descriptions containing "ONLINE"
-  @asz
-  Scenario Outline: Type tab
+
+  Scenario: Check Type tab with Any
+    When user selects type "Any"
+    And clicks search
+    Then results table should show at least one result based on "Any"
+
+  Scenario Outline: Check Type tab with <Type>
     When user selects type "<Type>"
     And clicks search
-    Then results table should show at least one result under "<Type>"
-    But results table should show no result under "Withdrawal"
+    Then results table should show at least one result based on "<Type>"
+    But results table should show no result under outside of "<Type>"
     Examples:
       | Type       |
-      | Any        |
       | Deposit    |
       | Withdrawal |
 

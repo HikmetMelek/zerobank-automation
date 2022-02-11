@@ -104,8 +104,8 @@ public class FindTransactionStepDef {
         select.selectByVisibleText(type);
     }
 
-    @Then("results table should show at least one result under {string}")
-    public void results_table_should_show_at_least_one_result_under(String type) {
+    @Then("results table should show at least one result based on {string}")
+    public void results_table_should_show_at_least_one_result_under_based_on(String type) {
 
         switch (type){
             case "Deposit":
@@ -133,8 +133,8 @@ public class FindTransactionStepDef {
         }
     }
 
-    @Then("results table should show no result under {string}")
-    public void results_table_should_show_no_result_under(String type) {
+    @Then("results table should show no result under outside of {string}")
+    public void results_table_should_show_no_result_under_outside_of(String type) {
         switch (type){
             case "Deposit":
                 for (WebElement each : input.withdrawalList ) {
@@ -149,12 +149,6 @@ public class FindTransactionStepDef {
 
         }
     }
-
-
-
-
-
-
 
 
 
