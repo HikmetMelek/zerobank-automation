@@ -1,7 +1,6 @@
 package com.zerobank.stepDefinitions;
 
 import com.zerobank.pages.PayBillsPage;
-import com.zerobank.utilities.BrowserUtils;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
