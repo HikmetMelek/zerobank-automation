@@ -20,7 +20,6 @@ public class FindTransactionStepDef {
 
     AccountActivityPage input= new AccountActivityPage();
 
-
     @Given("the user accesses the Find Transactions tab")
     public void the_user_accesses_the_Find_Transactions_tab() {
         input.findTransactionsLink.click();
@@ -44,10 +43,7 @@ public class FindTransactionStepDef {
     public void results_table_should_only_show_transactions_dates_between_to(String startedDate, String endedDate) {
         LocalDate started=LocalDate.parse(startedDate,DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate ended=LocalDate.parse(endedDate,DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-//        List<LocalDate> dateList = input.dates.stream()
-//                .map(each -> LocalDate.parse(each.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-//                .collect(Collectors.toList());
-//
+
         for (WebElement each : input.dates) {
             LocalDate dateTime=LocalDate.parse(each.getText(),DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             Assert.assertTrue((dateTime.isAfter(started) || dateTime.isEqual(started))
@@ -106,49 +102,13 @@ public class FindTransactionStepDef {
 
     @Then("results table should show at least one result based on {string}")
     public void results_table_should_show_at_least_one_result_under_based_on(String type) {
-
-        switch (type){
-            case "Deposit":
-                for (WebElement each : input.depositList ) {
-                    if(each.isDisplayed())
-                        Assert.assertTrue(each.isDisplayed());
-                }
-            break;
-            case "Withdrawal":
-                for (WebElement each : input.withdrawalList ) {
-                    if(each.isDisplayed())
-                        Assert.assertTrue(each.isDisplayed());
-                }
-            break;
-            case "Any":
-                for (WebElement each : input.depositList ) {
-                    if(each.isDisplayed())
-                        Assert.assertTrue(each.isDisplayed());
-                }
-                for (WebElement each : input.withdrawalList ) {
-                    if(each.isDisplayed())
-                        Assert.assertTrue(each.isDisplayed());
-                }
-            break;
-        }
+        Assert.assertTrue(input.getType(type));
     }
 
     @Then("results table should show no result under outside of {string}")
     public void results_table_should_show_no_result_under_outside_of(String type) {
-        switch (type){
-            case "Deposit":
-                for (WebElement each : input.withdrawalList ) {
-                Assert.assertTrue(each.getText().isEmpty());
-                }
-            break;
-            case "Withdrawal":
-                for (WebElement each : input.depositList ) {
-                Assert.assertTrue(each.getText().isEmpty());
-                }
-            break;
-
-        }
-    }
+        Assert.assertTrue(input.typeElementIsEmpty(type));
+   }
 
 
 

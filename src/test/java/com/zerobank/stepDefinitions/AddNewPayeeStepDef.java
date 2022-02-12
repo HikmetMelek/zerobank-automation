@@ -19,16 +19,15 @@ public class AddNewPayeeStepDef {
 
     @And("create new payee using following information")
     public void create_new_payee_using_following_information(Map<String,String> expectedInputs) {
-        page.payeeNameInputBoxes.sendKeys(expectedInputs.get("Payee Name"));
-        page.payeeAddressInputBoxes.sendKeys(expectedInputs.get("Payee Address"));
-        page.payeeAccountInputBoxes.sendKeys(expectedInputs.get("Account"));
-        page.payeeDetailsInputBoxes.sendKeys(expectedInputs.get("Payee details"));
-        page.addButton.click();
+      page.fillForm(expectedInputs);
     }
 
-    @Then("message {string} should be displayed")
-    public void message_should_be_displayed(String messageTitle) {
-        Assert.assertEquals(messageTitle.trim(),page.message.getText().trim());
+    @Then("message The new payee {string} was successfully created. should be displayed")
+    public void message_The_new_payee_was_successfully_created_should_be_displayed(String messageTitle) {
+        String expectedMessageTitle="The new payee "+messageTitle+" was successfully created.";
+        String actualMessageTitle= page.message.getText();
+        Assert.assertEquals(expectedMessageTitle,actualMessageTitle);
     }
+
 
 }

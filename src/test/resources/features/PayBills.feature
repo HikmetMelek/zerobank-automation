@@ -1,4 +1,4 @@
-@wip
+
 Feature: Pay Saved Payee function in Pay Bills page
   Background:
     Given the user is logged in

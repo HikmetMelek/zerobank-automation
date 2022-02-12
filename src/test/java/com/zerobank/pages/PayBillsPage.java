@@ -3,7 +3,7 @@ package com.zerobank.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import java.util.Map;
 
 public class PayBillsPage extends BasePage{
 
@@ -54,5 +54,13 @@ public class PayBillsPage extends BasePage{
 
     @FindBy(id = "pay_saved_payees")
     public WebElement payButton;
+
+    public void fillForm(Map<String,String> list){
+        payeeNameInputBoxes.sendKeys(list.get("Payee Name"));
+        payeeAddressInputBoxes.sendKeys(list.get("Payee Address"));
+        payeeAccountInputBoxes.sendKeys(list.get("Account"));
+        payeeDetailsInputBoxes.sendKeys(list.get("Payee details"));
+        addButton.click();
+    }
 
 }

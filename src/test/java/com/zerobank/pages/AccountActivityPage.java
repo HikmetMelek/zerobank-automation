@@ -1,5 +1,6 @@
 package com.zerobank.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -45,6 +46,46 @@ public class AccountActivityPage extends BasePage{
 
     @FindBy(xpath = "//div[@id='all_transactions_for_account']//th")
     public List<WebElement> transactionsColumns;
+
+    public boolean getType(String type){
+        boolean flag = false;
+        switch (type){
+            case "Deposit":
+                for (WebElement each : depositList ) {
+                        if(!each.getText().isEmpty())
+                            flag=true;
+                }
+                break;
+            case "Withdrawal":
+                for (WebElement each : withdrawalList ) {
+                    if(!each.getText().isEmpty())
+                        flag=true;
+                }
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + type);
+        }
+        return flag;
+    }
+
+    public boolean typeElementIsEmpty(String type){
+        boolean flag = false;
+        switch (type){
+            case "Deposit":
+                for (WebElement each : withdrawalList ) {
+                    if(each.getText().isEmpty());
+                    flag=true;
+                }
+                break;
+            case "Withdrawal":
+                for (WebElement each : depositList ) {
+                    if(each.getText().isEmpty());
+                    flag=true;
+                }
+                break;
+        }
+        return flag;
+    }
 
 
 }

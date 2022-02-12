@@ -34,12 +34,12 @@ Feature: Find Transactions in Account Activity
     And clicks search
     Then results table should not show any descriptions containing "ONLINE"
 
-  Scenario: Check Type tab with Any
+
+  Scenario Outline: Check Type tab
     When user selects type "Any"
     And clicks search
-    Then results table should show at least one result based on "Any"
-
-  Scenario Outline: Check Type tab with <Type>
+    Then results table should show at least one result based on "Deposit"
+    Then results table should show at least one result based on "Withdrawal"
     When user selects type "<Type>"
     And clicks search
     Then results table should show at least one result based on "<Type>"
