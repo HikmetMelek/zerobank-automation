@@ -1,4 +1,4 @@
-@asx
+@navigate
 Feature: Navigating to specific accounts in Accounts Activity
 
   Background:
