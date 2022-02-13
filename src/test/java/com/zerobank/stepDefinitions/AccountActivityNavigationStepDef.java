@@ -33,14 +33,14 @@ public class AccountActivityNavigationStepDef {
       Assert.assertTrue(Driver.get().getTitle().contains(title));
     }
 
-    @When("the user clicks on {string} link on the Account Activity page")
+    @When("the user clicks on {string} link on the Account Summary page")
     public void the_user_clicks_on_link_on_the_Account_Summary_page(String link) {
-        select= new Select(new AccountActivityPage().selectLink);
-        select.selectByVisibleText(link);
+        dashboardPage.accountsType(link).click();
     }
 
     @And("Account drop down should have {string} selected")
     public void account_drop_down_should_have_selected(String expectedLinkText) {
+        select= new Select(new AccountActivityPage().selectLink);
         String actualLinkText= select.getFirstSelectedOption().getText();
         Assert.assertEquals(expectedLinkText,actualLinkText);
     }

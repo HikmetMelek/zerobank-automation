@@ -3,10 +3,10 @@ Feature: Navigating to specific accounts in Accounts Activity
 
   Background:
     Given the user is logged in
-    Then the "Account Activity" page should be displayed
+    Then the "Account Summary" page should be displayed
 
   Scenario Outline: <selectedAccount> account redirect
-    When the user clicks on "<selectedAccount>" link on the Account Activity page
+    When the user clicks on "<selectedAccount>" link on the Account Summary page
     And Account drop down should have "<selectedAccount>" selected
     Examples:
       | selectedAccount |
