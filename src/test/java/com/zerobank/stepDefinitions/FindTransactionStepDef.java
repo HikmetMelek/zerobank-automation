@@ -41,7 +41,6 @@ public class FindTransactionStepDef {
     public void results_table_should_only_show_transactions_dates_between_to(String startedDate, String endedDate) {
         LocalDate started=LocalDate.parse(startedDate,formatter);
         LocalDate ended=LocalDate.parse(endedDate,formatter);
-
         for (WebElement each : page.dates) {
             LocalDate dateTime=LocalDate.parse(each.getText(),formatter);
             Assert.assertTrue((dateTime.isAfter(started) || dateTime.isEqual(started))
@@ -78,7 +77,6 @@ public class FindTransactionStepDef {
     @Then("results table should only show descriptions containing {string}")
     public void results_table_should_only_show_descriptions_containing(String description) {
         for (WebElement each : page.descriptions) {
-            System.out.println("each.getText() = " + each.getText());
             Assert.assertTrue(each.getText().contains(description));
         }
     }
