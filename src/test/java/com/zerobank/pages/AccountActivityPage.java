@@ -1,6 +1,8 @@
 package com.zerobank.pages;
 
+import com.zerobank.utilities.Driver;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -32,8 +34,8 @@ public class AccountActivityPage extends BasePage{
     @FindBy(xpath = "//div[@id='filtered_transactions_for_account']//td[2]")
     public List<WebElement> descriptions;
 
-    @FindBy(xpath = "//*[@id=\"filtered_transactions_for_account\"]/*[@class='well']")
-    public WebElement noDescription;
+//    @FindBy(xpath = "//*[@id=\"filtered_transactions_for_account\"]/*[@class='well']")
+//    public WebElement noDescription;
 
     @FindBy(id = "aa_type")
     public WebElement typeSelectButton;
@@ -46,6 +48,18 @@ public class AccountActivityPage extends BasePage{
 
     @FindBy(xpath = "//div[@id='all_transactions_for_account']//th")
     public List<WebElement> transactionsColumns;
+
+    public void clearFromDateInputBox(){
+        fromDate.clear();
+    }
+
+    public void clearToDateInputBox(){
+        toDate.clear();
+    }
+
+    public void clearDescriptionInputBox(){
+        descriptionInputBox.clear();
+    }
 
     public boolean getType(String type){
         boolean flag = false;

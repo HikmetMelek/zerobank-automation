@@ -16,3 +16,5 @@ Feature: Pay Saved Payee function in Pay Bills page
   Scenario: User should not make payment by Pay Saved Payee with blank date
     And User enters amount "500" and date ""
     Then User should see warning "Please fill out this field." on date input box
+
+

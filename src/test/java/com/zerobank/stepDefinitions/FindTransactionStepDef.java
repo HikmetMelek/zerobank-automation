@@ -9,43 +9,41 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class FindTransactionStepDef {
 
-    AccountActivityPage input= new AccountActivityPage();
+    AccountActivityPage page = new AccountActivityPage();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Given("the user accesses the Find Transactions tab")
     public void the_user_accesses_the_Find_Transactions_tab() {
-        input.findTransactionsLink.click();
+        page.findTransactionsLink.click();
     }
 
     @When("the user enters date range from {string} to {string}")
-    public void the_user_enters_date_range_from_to(String startedDate, String endedDate) {
-        input.fromDate.clear();
-        input.fromDate.sendKeys(startedDate);
-        input.toDate.clear();
-        input.toDate.sendKeys(endedDate);
+    public void the_user_enters_date_range_from_to(String fromDate, String toDate) {
+        page.clearFromDateInputBox();
+        page.fromDate.sendKeys(fromDate);
+        page.clearToDateInputBox();
+        page.toDate.sendKeys(toDate);
     }
 
     @When("clicks search")
     public void clicks_search() {
-        input.findButton.click();
+        page.findButton.click();
         BrowserUtils.waitFor(2);
     }
 
     @Then("results table should only show transactions dates between {string} to {string}")
     public void results_table_should_only_show_transactions_dates_between_to(String startedDate, String endedDate) {
-        LocalDate started=LocalDate.parse(startedDate,DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDate ended=LocalDate.parse(endedDate,DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate started=LocalDate.parse(startedDate,formatter);
+        LocalDate ended=LocalDate.parse(endedDate,formatter);
 
-        for (WebElement each : input.dates) {
-            LocalDate dateTime=LocalDate.parse(each.getText(),DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        for (WebElement each : page.dates) {
+            LocalDate dateTime=LocalDate.parse(each.getText(),formatter);
             Assert.assertTrue((dateTime.isAfter(started) || dateTime.isEqual(started))
                     && (dateTime.isBefore(ended) || dateTime.isEqual(ended)));
         }
@@ -54,60 +52,58 @@ public class FindTransactionStepDef {
 
     @Then("the results should be sorted by most recent date")
     public void the_results_should_be_sorted_by_most_recent_date() {
-        for (WebElement each : input.dates) {
-            LocalDate dateTime=LocalDate.parse(each.getText(),DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            System.out.println("dateTimeEach = " + dateTime+"  ");
+        for (int i = 0; i< page.dates.size()-1; i++) {
+            LocalDate dateTime1=LocalDate.parse(page.dates.get(i).getText(),formatter);
+            LocalDate dateTime2=LocalDate.parse(page.dates.get(i+1).getText(),formatter);
+            Assert.assertTrue(dateTime1.isAfter(dateTime2));
+            //Assert.assertTrue(dateTime1.compareTo(dateTime2)>0);
         }
     }
 
     @Then("the results table should only not contain transactions dated {string}")
     public void the_results_table_should_only_not_contain_transactions_dated(String dateOutOfList) {
-        LocalDate time= LocalDate.parse(dateOutOfList,DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        for (WebElement each : input.dates) {
-            LocalDate dateTime=LocalDate.parse(each.getText(),DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate time= LocalDate.parse(dateOutOfList,formatter);
+        for (WebElement each : page.dates) {
+            LocalDate dateTime=LocalDate.parse(each.getText(),formatter);
             Assert.assertTrue(time.isBefore(dateTime) || time.isAfter(dateTime));
         }
     }
 
     @When("the user enters description {string}")
     public void the_user_enters_description(String description) {
-        input.descriptionInputBox.clear();
-        input.descriptionInputBox.sendKeys(description);
+        page.clearDescriptionInputBox();
+        page.descriptionInputBox.sendKeys(description);
     }
 
     @Then("results table should only show descriptions containing {string}")
     public void results_table_should_only_show_descriptions_containing(String description) {
-        for (WebElement each : input.descriptions) {
+        for (WebElement each : page.descriptions) {
+            System.out.println("each.getText() = " + each.getText());
             Assert.assertTrue(each.getText().contains(description));
         }
     }
 
     @But("results table should not show descriptions containing {string}")
     public void results_table_should_not_show_descriptions_containing(String description) {
-        for (WebElement each : input.descriptions) {
+        for (WebElement each : page.descriptions) {
             Assert.assertFalse(each.getText().contains(description));
         }
     }
 
-    @Then("results table should not show any descriptions containing {string}")
-    public void results_table_should_not_show_any_descriptions_containing(String caseSensitive) {
-        Assert.assertFalse(input.noDescription.getText().contains(caseSensitive));
-    }
-
     @When("user selects type {string}")
     public void user_selects_type(String type) {
-        Select select= new Select(input.typeSelectButton);
+        Select select= new Select(page.typeSelectButton);
         select.selectByVisibleText(type);
     }
 
     @Then("results table should show at least one result based on {string}")
     public void results_table_should_show_at_least_one_result_under_based_on(String type) {
-        Assert.assertTrue(input.getType(type));
+        Assert.assertTrue(page.getType(type));
     }
 
     @Then("results table should show no result under outside of {string}")
     public void results_table_should_show_no_result_under_outside_of(String type) {
-        Assert.assertTrue(input.typeElementIsEmpty(type));
+        Assert.assertTrue(page.typeElementIsEmpty(type));
    }
 
 

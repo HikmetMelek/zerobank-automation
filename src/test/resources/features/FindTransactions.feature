@@ -3,9 +3,9 @@ Feature: Find Transactions in Account Activity
   Description: The purpose of this feature is to test the Find Transactions functionality on Accounts Activity
   Background:
     Given the user is logged in
-    Then the "Account Activity" page should be displayed
-    Given the user accesses the Find Transactions tab
-
+    When the "Account Activity" page should be displayed
+    Then the user accesses the Find Transactions tab
+@wip
   Scenario: Search date range
     When the user enters date range from "2012-09-01" to "2012-09-06"
     And clicks search
@@ -32,22 +32,22 @@ Feature: Find Transactions in Account Activity
     Then results table should only show descriptions containing "ONLINE"
     When the user enters description "online"
     And clicks search
-    Then results table should not show any descriptions containing "ONLINE"
+    Then results table should only show descriptions containing "ONLINE"
 
-
-  Scenario Outline: Check Type tab
-    When user selects type "Any"
+  Scenario: Check Type tab
     And clicks search
     Then results table should show at least one result based on "Deposit"
     Then results table should show at least one result based on "Withdrawal"
-    When user selects type "<Type>"
+    When user selects type "Deposit"
     And clicks search
-    Then results table should show at least one result based on "<Type>"
-    But results table should show no result under outside of "<Type>"
-    Examples:
-      | Type       |
-      | Deposit    |
-      | Withdrawal |
+    Then results table should show at least one result based on "Deposit"
+    But results table should show no result under outside of "Withdrawal"
+    When user selects type "Withdrawal"
+    And clicks search
+    Then results table should show at least one result based on "Withdrawal"
+    But results table should show no result under outside of "Deposit"
+
+
 
 
 

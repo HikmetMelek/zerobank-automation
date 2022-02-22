@@ -21,9 +21,7 @@ public class AccountActivityNavigationStepDef {
     @Given("the user is logged in")
     public void the_user_is_logged_in() {
         dashboardPage.singInButton.click();
-        String username=ConfigurationReader.get("username");
-        String password=ConfigurationReader.get("password");
-        new LoginPage().login(username,password);
+        new LoginPage().login(ConfigurationReader.get("username"),ConfigurationReader.get("password"));
         Driver.get().get("http://zero.webappsecurity.com/bank/account-summary.html");
     }
 

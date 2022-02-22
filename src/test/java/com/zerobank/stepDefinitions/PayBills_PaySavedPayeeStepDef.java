@@ -21,14 +21,12 @@ public class PayBills_PaySavedPayeeStepDef {
     public void user_should_see_success_message(String expectedMessage) {
         String actualMessage= payPage.message.getText();
         Assert.assertEquals(expectedMessage,actualMessage);
-
     }
 
     @Then("User should see warning {string} on amount input box")
     public void user_should_see_warning_on_amount_input_box(String warningMessage) {
         String actualWarningMessage= payPage.amountInPaySaved.getAttribute("validationMessage");
         Assert.assertEquals(warningMessage,actualWarningMessage);
-
     }
 
     @Then("User should see warning {string} on date input box")
